@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# Dynamic Filter Component System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This project demonstrates a reusable, type-safe dynamic filtering system built using React 18 and TypeScript.  
+The focus is on clean architecture, configuration-driven design, and real-time client-side filtering.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Scope Note
+The assessment specification is extensive. Given the suggested **30–60 minute completion timeframe**, this implementation focuses on:
 
-## React Compiler
+- Core filter architecture
+- Type-safe state management
+- Dynamic field, operator, and input rendering
+- Real-time client-side filtering
+- Support for nested object fields
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The solution is intentionally designed to be **extensible**, allowing additional field types and operators to be added with minimal changes.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features Implemented
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Dynamic Filter Builder
+- Add and remove multiple filter conditions
+- Field-based dynamic operator selection
+- Context-aware input rendering
+- AND-based multi-filter logic
+- Nested field filtering (e.g. `address.city`)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Supported Field Types
+- Text → Contains
+- Number → Greater Than
+- Boolean → Equals
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Data Handling
+- Local JSON dataset with **50 records**
+- Varied values for meaningful filtering
+- Nested object support
+- Real-time table updates
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Architecture Highlights
+- Config-driven filter definitions
+- Strong TypeScript typing
+- Modular and reusable components
+- Separation of UI, logic, and configuration
+- Memoized filtering for performance optimization
+
+---
+
+## Folder Structure
+
+src/
+├─ components/
+│ ├─ FilterBuilder/
+│ ├─ DataTable/
+├─ config/
+├─ data/
+├─ types/
+├─ utils/
+├─ App.tsx
+└─ main.tsx
+
+
+---
+
+## Tech Stack
+- React 18
+- TypeScript
+- Vite
+- Material UI (v5)
+
+---
+
+## Setup Instructions
+
+```bash
+npm install
+npm run dev
